@@ -1,7 +1,7 @@
-import IDEF0Diagram from '@/components/IDEF0Diagram';
+import FlowDiagram from '@/components/FlowDiagram';
 
 const Index = () => {
-  return <IDEF0Diagram />;
+  return <FlowDiagram />;
 };
 
 export default Index;
