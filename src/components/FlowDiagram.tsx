@@ -1,67 +1,32 @@
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
-interface Connection {
-  from: string;
-  to: string;
-  label: string;
-  color: 'input' | 'output' | 'control' | 'mechanism';
-  type?: 'vertical' | 'horizontal';
-}
-
 const processes = [
-  { id: 'A1', title: 'Принять заказ на прокат', x: 15, y: 15 },
-  { id: 'A2', title: 'Сформировать заказ на выдачу', x: 45, y: 35 },
-  { id: 'A3', title: 'Оформить документы на прокат', x: 75, y: 55 }
-];
-
-const connections: Connection[] = [
-  { from: 'start', to: 'A1', label: 'Заказ клиента', color: 'input', type: 'horizontal' },
-  { from: 'A1', to: 'A2', label: 'Электронная форма заказа', color: 'output', type: 'vertical' },
-  { from: 'A2', to: 'A3', label: 'Заявка на выдачу инвентаря', color: 'output', type: 'vertical' },
-  { from: 'A3', to: 'end', label: 'Документы на прокат', color: 'output', type: 'horizontal' }
+  { id: 'A1', title: 'Оформление страхового полиса', x: 15, y: 15 },
+  { id: 'A2', title: 'Андеррайтинг и оценка рисков', x: 45, y: 35 },
+  { id: 'A3', title: 'Выдача страхового договора', x: 75, y: 55 }
 ];
 
 const controls = [
-  { target: 'A1', label: 'Нормативные правила', x: 25, y: 5 },
-  { target: 'A2', label: 'Модуль учета инвентаря', x: 55, y: 5 },
-  { target: 'A3', label: 'Бухгалтерское ПО', x: 85, y: 5 }
+  { target: 'A1', label: 'Правила страхования', x: 23, y: 5 },
+  { target: 'A2', label: 'Тарифы и лимиты', x: 53, y: 5 },
+  { target: 'A3', label: 'Нормативные акты', x: 83, y: 5 }
 ];
 
 const mechanisms = [
-  { target: 'A1', label: 'Администратор', x: 15, y: 80 },
-  { target: 'A2', label: 'Программное обеспечение', x: 45, y: 90 },
-  { target: 'A3', label: 'Кассир', x: 75, y: 80 }
+  { target: 'A1', label: 'Страховой агент', x: 15, y: 80 },
+  { target: 'A2', label: 'ИС андеррайтинга', x: 45, y: 90 },
+  { target: 'A3', label: 'Бухгалтерия', x: 75, y: 80 }
 ];
 
 const FlowDiagram = () => {
-  const getColorClass = (color: string) => {
-    const colors = {
-      input: 'text-[hsl(var(--idef0-input))]',
-      output: 'text-[hsl(var(--idef0-output))]',
-      control: 'text-[hsl(var(--idef0-control))]',
-      mechanism: 'text-[hsl(var(--idef0-mechanism))]'
-    };
-    return colors[color as keyof typeof colors] || colors.input;
-  };
-
-  const getStrokeColor = (color: string) => {
-    const colors = {
-      input: '#0EA5E9',
-      output: '#10B981',
-      control: '#F97316',
-      mechanism: '#8B5CF6'
-    };
-    return colors[color as keyof typeof colors] || colors.input;
-  };
-
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">IDEF0: Прокат инвентаря</h1>
+          <h1 className="text-3xl font-bold tracking-tight">IDEF0: Страховая компания</h1>
           <p className="text-muted-foreground">
-            Функциональная декомпозиция процесса проката спортивного инвентаря
+            Функциональная декомпозиция процесса оформления страхового полиса
           </p>
         </div>
 
@@ -199,7 +164,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '5%', top: '13%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-input))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-input))] whitespace-nowrap">
-                      Заказ клиента
+                      Заявка клиента
                     </p>
                   </div>
                 </div>
@@ -207,7 +172,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '25%', top: '26%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-output))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-output))] whitespace-nowrap">
-                      Электронная форма заказа
+                      Анкета страхователя
                     </p>
                   </div>
                 </div>
@@ -215,7 +180,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '55%', top: '46%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-output))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-output))] whitespace-nowrap">
-                      Заявка на выдачу инвентаря
+                      Оценка рисков
                     </p>
                   </div>
                 </div>
@@ -223,7 +188,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '86%', top: '58%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-output))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-output))] whitespace-nowrap">
-                      Документы на прокат
+                      Страховой полис
                     </p>
                   </div>
                 </div>
@@ -239,7 +204,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '20%', top: '92%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-mechanism))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-mechanism))] whitespace-nowrap">
-                      Программное Обеспечение
+                      CRM-система
                     </p>
                   </div>
                 </div>
@@ -247,7 +212,7 @@ const FlowDiagram = () => {
                 <div className="absolute" style={{ left: '55%', top: '70%', zIndex: 5 }}>
                   <div className="bg-background/80 backdrop-blur-sm px-3 py-1 rounded border border-[hsl(var(--idef0-output))]">
                     <p className="text-xs font-medium text-[hsl(var(--idef0-output))] whitespace-nowrap">
-                      Система учета
+                      База данных клиентов
                     </p>
                   </div>
                 </div>
@@ -255,7 +220,7 @@ const FlowDiagram = () => {
 
               <div className="mt-6 pt-6 border-t border-border relative z-10">
                 <div className="text-xs text-muted-foreground font-mono">
-                  NODE: A0 | TITLE: Прокат инвентаря | DIAGRAM: IDEF0
+                  NODE: A0 | TITLE: Страховая компания | DIAGRAM: IDEF0
                 </div>
               </div>
             </Card>
@@ -290,20 +255,42 @@ const FlowDiagram = () => {
                 <div>
                   <Badge variant="outline" className="font-mono mb-1">A1</Badge>
                   <p className="text-xs text-muted-foreground">
-                    Прием заказа от клиента с регистрацией в системе
+                    Прием заявки от клиента, сбор необходимых документов и данных о страхуемом объекте
                   </p>
                 </div>
                 <div>
                   <Badge variant="outline" className="font-mono mb-1">A2</Badge>
                   <p className="text-xs text-muted-foreground">
-                    Формирование заявки на выдачу инвентаря из склада
+                    Андеррайтинг — анализ рисков, расчет страховой премии, принятие решения о страховании
                   </p>
                 </div>
                 <div>
                   <Badge variant="outline" className="font-mono mb-1">A3</Badge>
                   <p className="text-xs text-muted-foreground">
-                    Оформление документов проката и расчет с клиентом
+                    Оформление страхового договора, выдача полиса клиенту, внесение данных в систему учета
                   </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-6 bg-muted/30">
+              <h3 className="text-sm font-semibold mb-3">Входы и выходы</h3>
+              <div className="space-y-3 text-xs">
+                <div>
+                  <p className="font-medium text-[hsl(var(--idef0-input))] mb-1">Входы:</p>
+                  <ul className="space-y-1 text-muted-foreground ml-3">
+                    <li>• Заявка клиента на страхование</li>
+                    <li>• Документы о страхуемом объекте</li>
+                    <li>• Персональные данные</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-medium text-[hsl(var(--idef0-output))] mb-1">Выходы:</p>
+                  <ul className="space-y-1 text-muted-foreground ml-3">
+                    <li>• Страховой полис</li>
+                    <li>• Договор страхования</li>
+                    <li>• Платежные документы</li>
+                  </ul>
                 </div>
               </div>
             </Card>
